@@ -12,23 +12,33 @@
 package SillyFunction;
 
 sub group_products {
-my $products = shift;
-my %brand_type = ();
-my $grouped_products = [];
+  my $products = shift;
+  # the $ sign signifies that products is scalar (string, number, reference or file handle
+  # shift is used to assign the functions arguments to $products
+  my %brand_type = ();
+  # the % sign signifies a hash (dictionary)  essentially an empty dict
+  my $grouped_products = [];
+  
 
-foreach (@{$products})
-{
-$brand_type{$_->{brand}} ||= {};
-$brand_type{$_->{brand}}->{$_->{type}} = 1;
-}
-foreach (sort keys %brand_type)
-{
-my $brand = $_;
-foreach (sort keys %{$brand_type{$brand}}) {
-push(@{$grouped_products}, { brand => $brand, type => $_});
-}
-}
-$grouped_products;
-}
+  foreach (@{$products})
+  # the @ sign denotes a list (one dimensional array) this is a loop which converts the string held in $products into
+  # a list and then
+    {
+      $brand_type{$_->{brand}} ||= {};
+      $brand_type{$_->{brand}}->{$_->{type}} = 1;
+    }
+  foreach (sort keys %brand_type)
+    {
+      my $brand = $_;
+      foreach (sort keys %{$brand_type{$brand}}) 
+      {
+        push(@{$grouped_products}, 
+          { 
+            brand => $brand, type => $_
+          });
+      }
+    }
+  $grouped_products;
+  }
 
 1;
