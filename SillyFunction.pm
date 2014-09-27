@@ -18,6 +18,7 @@ sub group_products {
   my %brand_type = ();
   # the % sign signifies a hash (dictionary)  essentially an empty dict
   my $grouped_products = [];
+    # again a scalar variable,
   
 
   foreach (@{$products})
