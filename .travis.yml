@@ -2,7 +2,5 @@ language: python
 python:
  - "2.7"
  - “3.2”
-
- 
 script:
  - python functests.py
