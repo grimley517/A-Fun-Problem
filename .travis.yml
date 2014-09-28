@@ -5,4 +5,5 @@ python:
 
  
 script:
- - python functests.py
+ - python runtests.py
+ - python functtests.py
