@@ -53,6 +53,19 @@ class testFunctions(unittest.TestCase):
             text = file.read()
             self.assertIn('my $args = \%argument;', text)#test5 fails - not passed into argument of script, or line wrong
 
+    def test6(self):
+        '''check for replacement of argument and setup variables, list of dicts'''
+        scrip = scriptmaker.script(argument = [{'foo': 'bar', 'one':1},{'foo':'bat','one',2})
+        scrip.generate()
+        self.assertTrue(os.path.exists('genscript.pl'))
+        self.assertEqual(scrip.setup,'my @argument = qw ( foo bar one 1 );\n')#test 6 fails - argument not passed correctly
+        self.assertEqual(scrip.argument, '\@argument')#test6 fails - dict reference wrong
+                         
+        with open('genscript.pl')as file:
+            text = file.read()
+            self.assertIn('my $args = \%argument;', text)#test6 fails - not passed into argument of script, or line wrong
+
+
 
         
     

@@ -46,8 +46,21 @@ class script:
         
     
     def listSetup(self,argument):
-        argument = map(str, argument)
-        argument = " ".join(argument)
-        argument = "my @argument = qw ( {0} );".format(argument)
-        return (argument)
+        #if the fist thing in the list is a dict, then assume its a list of dicts
+        if isinstance(argument[0],dict):
+            answer = ""
+            i=0
+            for dictItem in argument:
+                for key, value in dictItem.items():
+                    answer = answer + 'my $dict{0}_ref = {{ {1}+>{2} }};/n'.format(i, key, value)
+                    i +=1
+            answer = answer + ' my @argument = {'
+            j=0
+            while j<i:
+                
+        else:
+            argument = map(str, argument)
+            argument = " ".join(argument)
+            argument = "my @argument = qw ( {0} );".format(argument)
+            return (argument)
     

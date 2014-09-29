@@ -1,5 +1,6 @@
 import runner as run
 import unittest
+import scriptmaker
 
 class testSequence(unittest.TestCase):
 
@@ -24,7 +25,36 @@ class testSequence(unittest.TestCase):
         testArgs = ['1 2 3 4 5 6 7 8 9 10']
         proc = run.perlRunner(args = testArgs)
         print(proc.call())
-        
+        """The output to this shows that the expected input is either a hash, or a list.  From the code I expect a hash,
+        but I would like to see what it does with both at any rate.
+        """
+    
+    def test4(self):
+        print('trying to input a list via the script generator')
+        testArgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        scrip = scriptmaker.script(argument = testArgs)
+        proc = run.perlRunner(script = 'genscript.pl')
+        print(proc.call())
+        del scrip
+        '''the output to this indicates that it is not expecting a list'''
+
+    def test5(self):
+        print('trying to input a dict via the script generator')
+        testArgs = {'brand':'citroen', 'type' : 'ax'}
+        scrip = scriptmaker.script(argument = testArgs)
+        proc = run.perlRunner(script = 'genscript.pl')
+        print(proc.call())
+        del scrip
+        '''the output to this indicates that it is not expecting a dict'''
+
+    def test6(self):
+        print('trying to input a list of dicts via the script generator')
+        testArgs = [{'brand':'citroen', 'type' : 'ax'}, {'brand':'citroen', 'type':'bx'}]
+        scrip = scriptmaker.script(argument = testArgs)
+        proc = run.perlRunner(script = 'genscript.pl')
+        print(proc.call())
+        del scrip
+        '''the output to this indicates that it is not expecting a list'''
 
 if __name__ == '__main__':
     unittest.main()
