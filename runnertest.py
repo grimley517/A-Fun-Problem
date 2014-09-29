@@ -8,7 +8,7 @@ class testSequence(unittest.TestCase):
 
     def test1(self):
         #checks that the perlrunner class is running a system command
-        proc = run.perlRunner('-v', script = ' ')
+        proc = run.perlRunner(args = ['-v'], script = ' ')
         self.assertEqual(proc.code(), 0)#test1 fails - basic process failed to run
 
     def test2(self):
@@ -21,8 +21,8 @@ class testSequence(unittest.TestCase):
 
             this is to inject a number of arguments into the script and see what the outputs are
             '''
-        testArgs = '1 2 3 4 5 6 7 8 9 10'
-        proc = run.perlRunner(testArgs)
+        testArgs = ['1 2 3 4 5 6 7 8 9 10']
+        proc = run.perlRunner(args = testArgs)
         print(proc.call())
         
 
