@@ -1,7 +1,7 @@
 import subprocess
 
 class perlRunner():
-    def __init__ (self,  *args, script = "script.pl"):
+    def __init__ (self,  args = [], script = "script.pl"):
         self.script = script.lower() #to be commercial this would need some input checking.
         self.args = args
         self.cmd = ["perl {0}".format(self.script) ,' '.join(self.args)]
