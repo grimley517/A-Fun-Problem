@@ -5,3 +5,4 @@ python:
 script:
  - python runnertest.py
  - python functtests.py
+ - python scriptmakertests.py
