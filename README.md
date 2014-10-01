@@ -45,7 +45,7 @@ group = refactored.groupedProducts([{‘brand’:’foo’, ‘type’:’bar’
 print (group.getGrpList())
 ```
 
-This will return a list of unique {brand : type} pairs
+This will return a list of unique  dictionaries for each product.
 
 Simple Example 2 - setting up using a product dicts, and generating items from the 
 
@@ -56,6 +56,5 @@ group.add{‘brand’:foo’, ‘type’:’bar’}])
 
 print (group.genGrpItem())
 ```
-
-
+This includes the generator which generates the dict members in order of type.
 
