@@ -1,5 +1,5 @@
 #Cloud 9 config files
-.c9
+.c9/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
