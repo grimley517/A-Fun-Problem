@@ -1,12 +1,16 @@
 '''
-This is a refactor for use in python the focus in this is on flexibility 
+This is a refactor for use in python the focus in this is on flexibility The performance of this should already be in the order of
+(O(n)) for data entry(list of dicts)and O(1) for retrieval and single item insertion
+
 '''
 class groupedProducts:
-    ''' this class contains the products we are grouping,
+    ''' This class contains the products we are grouping,
 
         there are two add methods for flexibility - this gives the opportunity to add a single item,
         held within a hash (dict)
-        or a list of items in a list  This also allows semi-persistence of the data model and allows for multiple formats of output (JSON, etc)'''
+        or a list of items in a list
+        This also allows semi-persistence of the data model and allows for multiple formats of output
+        (JSON, etc)'''
     def __init__(self, prodList):
         '''constructor method - seta up the product list
         '''
@@ -19,7 +23,8 @@ class groupedProducts:
     def addList(self, prodList):
         ''' this is essentially a wrapper for the sigle item add function
 
-            This should be in efficiency of O(n) where n is input size for adding an item, and the same for retrieving it.'''
+            This should be in efficiency of O(n) where n is input size for adding an item,
+            and the same for retrieving it.'''
         for item in prodList:
              self.addItem(item)
              
@@ -51,5 +56,6 @@ class product:
     
     def __ne__(self, other):#need this to check for behaviour of the equality function
         return (not self.__eq__)
+    
 
 

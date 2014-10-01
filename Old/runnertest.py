@@ -37,7 +37,7 @@ class testSequence(unittest.TestCase):
         scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
-        del scrip
+        del scrip#comment this line out to read the generated script
         '''the output to this indicates that it is not expecting a list'''
 
     @unittest.skip('scriptgenerator changed, this test is obsolete')
@@ -48,7 +48,7 @@ class testSequence(unittest.TestCase):
         scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
-        del scrip
+        del scrip#comment this line out to read the generated script
         '''the output to this indicates that it is not expecting a dict'''
 
     def test6(self):
@@ -61,7 +61,7 @@ class testSequence(unittest.TestCase):
         scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
-        del scrip
+        del scrip#comment this line out to read the generated script
         '''the output to this indicates that it is not expecting a list of dicts'''
 
 if __name__ == '__main__':
