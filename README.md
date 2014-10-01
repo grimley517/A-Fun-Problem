@@ -52,7 +52,7 @@ import refactored
 group = refactored.groupedProducts({‘brand’:’foo’, ‘type’:’bar’}),
 group.add{‘brand’:foo’, ‘type’:’bar’}])
 
-print (group.getGrpList())
+print (group.genGrpItem())
 ‘’’
 
 

@@ -15,6 +15,12 @@ class groupedProducts:
         '''constructor method - seta up the product list
         '''
         self.grouped = [] #set up an empty list for the products to belong to
+        self.add(prodList)
+        
+    def add(self, prodList):
+        '''General adding method - add products, or lists of products to the group
+
+        This is a convienence function which inorporates both teh adding functions for list and item'''
         if isinstance(prodList,list):
             self.addList(prodList) #add the list of products to the group
         elif isinstance(prodList,dict):
@@ -44,14 +50,18 @@ class groupedProducts:
             answer.append({'brand':item.brand, 'type': item.typeRef})
         return (answer)
 
+    def genGrpItem(self):
+        for item in self.grouped:
+            yield(item)
+
 class product:
     def __init__ (self, brand, typeRef):
-        '''initialises a product
+        '''initialises a product With a brand and a Type {'brand':'foo', 'type':'bar'
         '''
         self.brand = brand
         self.typeRef = typeRef
 
-    def __eq__(self, other):
+    def __eq__(self, other):#checks for equality
         return(self.brand== other.brand and self.typeRef == other.typeRef)
     
     def __ne__(self, other):#need this to check for behaviour of the equality function
