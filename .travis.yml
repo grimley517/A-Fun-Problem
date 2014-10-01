@@ -3,7 +3,5 @@ python:
  - "2.7"
  - "3.2"
 script:
- - python runnertest.py
- - python functtests.py
- - python scriptmakertests.py
- - python refactoredTest.py
+
+ - python new/refactoredTest.py
