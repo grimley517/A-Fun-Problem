@@ -47,3 +47,8 @@ sub group_products {
   }
 
 1;
+
+#this script takes in a list of dictionaries, in the form[{'brand':1 ,"type":1},
+#{'brand':1 ,"type":2},
+#{'brand':2 ,"type":2}]
+#This should output the same list as above stripped of any duplicates, and any extra keys (name, price etc)

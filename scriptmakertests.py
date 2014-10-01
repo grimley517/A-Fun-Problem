@@ -55,7 +55,7 @@ class testFunctions(unittest.TestCase):
 
     def test6(self):
         '''check for replacement of argument and setup variables, list of dicts'''
-        scrip = scriptmaker.script(argument = [{'foo': 'bar', 'one':1},{'foo':'bat','one',2})
+        scrip = scriptmaker.script(argument = [{'foo': 'bar', 'one':1},{'foo':'bat','one':2})
         scrip.generate()
         self.assertTrue(os.path.exists('genscript.pl'))
         self.assertEqual(scrip.setup,'my @argument = qw ( foo bar one 1 );\n')#test 6 fails - argument not passed correctly
@@ -66,8 +66,6 @@ class testFunctions(unittest.TestCase):
             self.assertIn('my $args = \%argument;', text)#test6 fails - not passed into argument of script, or line wrong
 
 
-
-        
     
 if __name__ == '__main__':
     unittest.main()

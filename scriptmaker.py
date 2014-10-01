@@ -13,19 +13,20 @@ class script:
             self.argument = argument
             self.setup = '/n'
 
+    def __del__(self):
+        os.remove('genscript.pl')
+
     def generate(self):
         with open('genscript.pl', 'wt') as file:
             file.write("""use SillyFunction;
-            print 'started //n';
-            {setup}
-            my $args = {arguments};
-            my $result = SillyFunction -> group_products ($args);
-            my @results = @{{$result}};
-            foreach (@results){{
-            print 'a result is $_';
-            }}
-            1;
-            """.format (arguments=self.argument, setup = self.setup))
+print 'started \\n';
+{setup}
+my $args = {arguments};
+my $result = SillyFunction -> group_products ($args);\n
+foreach (@{{$result}})\n
+{{ \nprint 'brand is $_{{brand}}\\n';\nprint 'type is $_{{type}}\\n';\n}}\n;\n
+            """.format (arguments=self.argument, setup = self.setup))#really odd indentation = although I hope it dosen't affect result.
+            
 
     def hashArgs(self,argument):
         argument = '\%argument'
@@ -51,13 +52,19 @@ class script:
             answer = ""
             i=0
             for dictItem in argument:
+                answer = answer + 'my $dict{0}_ref = {{ '.format(i)
                 for key, value in dictItem.items():
-                    answer = answer + 'my $dict{0}_ref = {{ {1}+>{2} }};/n'.format(i, key, value)
-                    i +=1
-            answer = answer + ' my @argument = {'
+                    answer = answer + '{1}=>{2} ,'.format(i, key, value)
+                i +=1
+                answer = answer [:-2] #removes last comma
+                answer += '};\n'
+            answer = answer + ' my @argument = ['
             j=0
             while j<i:
-                
+                answer = answer + '$dict{0}_ref , '.format(j)
+                j+=1
+            answer = answer[:-2]#again gets rid of last comma
+            return (answer + ' ];')
         else:
             argument = map(str, argument)
             argument = " ".join(argument)
