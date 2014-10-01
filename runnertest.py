@@ -28,20 +28,24 @@ class testSequence(unittest.TestCase):
         """The output to this shows that the expected input is either a hash, or a list.  From the code I expect a hash,
         but I would like to see what it does with both at any rate.
         """
-    
+
+    @unittest.skip('scriptgenerator changed, this test is obsolete')
     def test4(self):
         print('trying to input a list via the script generator')
         testArgs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         scrip = scriptmaker.script(argument = testArgs)
+        scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
         del scrip
         '''the output to this indicates that it is not expecting a list'''
 
+    @unittest.skip('scriptgenerator changed, this test is obsolete')
     def test5(self):
         print('trying to input a dict via the script generator')
         testArgs = {'brand':'citroen', 'type' : 'ax'}
         scrip = scriptmaker.script(argument = testArgs)
+        scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
         del scrip
@@ -49,12 +53,16 @@ class testSequence(unittest.TestCase):
 
     def test6(self):
         print('trying to input a list of dicts via the script generator')
-        testArgs = [{'brand':'citroen', 'type' : 'ax'}, {'brand':'citroen', 'type':'bx'}]
+        testArgs = [{'brand':'citroen', 'type' : 'car'},
+                    {'brand':'citroen', 'type':'car'},
+                    {'brand':'cripps', 'type':'bread'},
+                    {'brand':'peugeot', 'type':'car'}]
         scrip = scriptmaker.script(argument = testArgs)
+        scrip.generate()
         proc = run.perlRunner(script = 'genscript.pl')
         print(proc.call())
         del scrip
-        '''the output to this indicates that it is not expecting a list'''
+        '''the output to this indicates that it is not expecting a list of dicts'''
 
 if __name__ == '__main__':
     unittest.main()
