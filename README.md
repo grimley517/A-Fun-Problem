@@ -44,9 +44,11 @@ group = refactored.groupedProducts([{‘brand’:’foo’, ‘type’:’bar’
 
 print (group.getGrpList())
 ```
+
 This will return a list of unique {brand : type} pairs
 
 Simple Example 2 - setting up using a product dicts, and generating items from the 
+
 ```python
 import refactored
 group = refactored.groupedProducts({‘brand’:’foo’, ‘type’:’bar’}),

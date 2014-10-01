@@ -29,6 +29,19 @@ class testFunctions(unittest.TestCase):
         testVal = refactored.groupedProducts(items).getGrpList()
         self.assertIn(expected, testVal) #test 3 fails - Item not in answer
         self.assertEqual(len(testVal), 1) #test 3 fails - Answer too long - shows duplication
+
+    def test4(self):
+        '''check that output list is sorted by Type
+
+        This is also checking generator output'''
+        items = [{'brand':'citroen', 'type':'car'},
+                 {'brand':'honda', 'type':'bike'}]
+        expected1 = {'brand':'honda', 'type':'bike'}            
+        expected2 = {'brand':'citroen', 'type':'car'}
+        
+        testgrp = refactored.groupedProducts(items)
+        self.assertIn(expected1, testgrp.genGrpItem()) #test 4 fails - Item 1 not in order
+        self.assertIn(expected2, testgrp.genGrpItem()) #test 4 fails - Item 2 not in order
         
 if __name__ == '__main__':
     unittest.main()

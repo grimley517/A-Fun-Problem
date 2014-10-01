@@ -27,7 +27,7 @@ class groupedProducts:
              self.addItem(prodList)#add the singular item entered
 
     def addList(self, prodList):
-        ''' this is essentially a wrapper for the sigle item add function
+        ''' this is essentially a wrapper for the single item add function
 
             This should be in efficiency of O(n) where n is input size for adding an item,
             and the same for retrieving it.'''
@@ -41,22 +41,29 @@ class groupedProducts:
              item['type']=1
         p = product(item['brand'], item['type'])
         if p not in self.grouped:
-            self.grouped.append(p)
+            i=0
+            for prod in self.grouped:
+                while prod<p: #since list is sorted already while loop will generate answer faster than for loop
+                    i+=1
+            left = self.grouped[:i]
+            right = self.grouped[i:]
+            self.grouped = left + [p] +right #insertion into sorted list of p
     
 
     def getGrpList(self):
+        '''Returns the sorted list of products as a dict [{'brand':'foo', 'type':'bar'},,,]'''
         answer = []
         for item in self.grouped:
-            answer.append({'brand':item.brand, 'type': item.typeRef})
+            answer.append({'brand' : item.brand, 'type' : item.typeRef})
         return (answer)
 
     def genGrpItem(self):
         for item in self.grouped:
-            yield(item)
+            yield({'brand':item.brand, 'type': item.typeRef})#maybe this should form the basis of the list output?
 
 class product:
     def __init__ (self, brand, typeRef):
-        '''initialises a product With a brand and a Type {'brand':'foo', 'type':'bar'
+        '''initialises a product With a brand and a Type {'brand':'foo', 'type':'bar'}
         '''
         self.brand = brand
         self.typeRef = typeRef
@@ -66,6 +73,9 @@ class product:
     
     def __ne__(self, other):#need this to check for behaviour of the equality function
         return (not self.__eq__)
+
+    def __lt__(self, other): #used in adding to the sorted list comnpares typerefs
+        return (self.typeRef < other.typeRef)
     
 
 
