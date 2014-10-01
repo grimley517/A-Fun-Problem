@@ -42,7 +42,8 @@ Simple Example 1 - setting up using a list of dicts, and returning a list of dic
 import refactored
 group = refactored.groupedProducts([{‘brand’:’foo’, ‘type’:’bar’},{‘brand’:foo’, ‘type’:’bar’}])
 
-print (group.getGrpList())```
+print (group.getGrpList())
+```
 This will return a list of unique {brand : type} pairs
 
 Simple Example 2 - setting up using a product dicts, and generating items from the 
